@@ -4,19 +4,34 @@ import PrimaryButton from '../../components/util/Buttons/PrimaryButton'
 import SecondaryButton from '../../components/util/Buttons/SecondaryButton'
 import { Colors } from '../../Constants/Color'
 import InActiveButton from '../../components/util/Buttons/InActiveButton'
+import LoadingOverlay from '../../components/util/LoadingOverlay'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 var screenWidth = Dimensions.get('window').width;
 var screenHeight = Dimensions.get('window').height;
 
 const NumberVerfication = ({ navigation, style }) => {
+  const [Loading, setLoading] = useState(false)
   const buttonhandler = () => {
     navigation.navigate('addressScreen')
   }
   const permissionbuttonhandler = () => {
 
   }
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+    
+  }, [])
   return (
     <View style={styles.container}>
+      {/* {Loading &&
+        <View style={{ justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
+          <LoadingOverlay />
+        </View>} */}
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.textContainer}>
           <Text style={styles.textHi}>Hi,</Text>

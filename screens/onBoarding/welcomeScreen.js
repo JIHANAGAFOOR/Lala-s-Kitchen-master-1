@@ -4,12 +4,13 @@ import PrimaryButton from '../../components/util/Buttons/PrimaryButton'
 import { Colors } from '../../Constants/Color'
 import LoadingOverlay from '../../components/util/LoadingOverlay'
 import SecondaryButton from '../../components/util/Buttons/SecondaryButton'
+import { useSelector } from 'react-redux'
 const image = require('../../assets/BackgroundImage.jpg')
 
 const WelcomeScreen = ({ navigation }) => {
   const [Loading, setLoading] = useState(null)
   const [data, setData] = useState(image)
-
+  var user = useSelector(state => state.user.otpUser)
   function onLoading(value, label) {
     setLoading(value)
   }

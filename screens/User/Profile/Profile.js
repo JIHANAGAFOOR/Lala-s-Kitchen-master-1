@@ -4,7 +4,6 @@ import HeaderBarWithoutScroll from '../../../components/util/HeaderBarWithoutScr
 import { SvgXml } from 'react-native-svg'
 import { Camera, EditName, ProfilePicture } from '../../../Constants/SVG'
 import { Colors } from '../../../Constants/Color'
-import ImagePicker from './ImagePicker'
 import { useState } from 'react'
 import ImagePickerItem from './ImagePicker'
 
@@ -44,6 +43,7 @@ const Profile = () => {
                 </View>
             </View>
         </View>
+        
     )
 }
 

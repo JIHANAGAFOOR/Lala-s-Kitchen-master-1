@@ -1,34 +1,34 @@
 import { StyleSheet, Button, View, Alert, Image, Text, TouchableOpacity, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import * as ImagePicker from 'expo-image-picker';
-import { stat } from 'react-native-fs';
 import { SvgXml } from 'react-native-svg'
 import { Camera, ProfilePicture } from '../../../Constants/SVG'
 import { Colors } from '../../../Constants/Color'
 import { useEffect } from 'react';
-import {FileSystem} from 'expo'
+import { FileSystem } from 'expo'
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../../store/User';
 const screenHeight = Dimensions.get('window').height
 const ImagePickerItem = () => {
+    const dispatch = useDispatch()
     const [pickedImagePath, setPickedImagePath] = useState('');
     const [imm, setImm] = useState({ height: "", width: "" })
     const showImagePicker = async () => {
         const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        const statResult = await stat(pickedImagePath);
-        console.log('file size: ' + statResult.size);
         if (permissionResult.granted === false) {
             alert("You've refused to allow this appp to access your photos!");
             return;
         }
-        const result = await ImagePicker.launchImageLibraryAsync({allowsEditing:false,})
+        const result = await ImagePicker.launchImageLibraryAsync({ allowsEditing: false, })
         // let filesize=result.fi
         // console.log("filesize  :"+JSON.stringify(result));
         if (!result.cancelled) {
             setPickedImagePath(result.uri);
             console.log(result.uri);
         }
-       
+
     }
-    let imagePreview = <SvgXml xml={ProfilePicture} width={screenHeight / 3} height={screenHeight / 3} />
+    let imagePreview = <SvgXml xml={ProfilePicture} width={screenHeight / 3} height={screenHeight / 2} />
     if (pickedImagePath) {
         imagePreview = <View style={styles.imageContainer}>
             {
@@ -40,15 +40,9 @@ const ImagePickerItem = () => {
         </View>
     }
     useEffect(() => {
-        // if (pickedImagePath) {
-        //     Image.getSize(pickedImagePath, (width, height) => {
-        //         console.log("size is " + width, height);
-        //     });
-        // }
-        // ImagePicker.image
-        // const statResult = await stat(pickedImagePath);
-        // console.log('file size: ' + statResult.size);
-
+        if (pickedImagePath) {
+            dispatch(userActions.userImageSelected(pickedImagePath))
+        }
     }, [pickedImagePath])
     return (
         <View style={styles.ProfilePictureContainer}>
@@ -69,6 +63,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         justifyContent: "center",
+        alignItems:"center"
     },
     image: {
         width: '100%',

@@ -100,13 +100,13 @@ const AddonsMain = ({ navigation }) => {
                 <ScrollView style={{ flex: 1 }}
                     showsVerticalScrollIndicator={false}
                 >
-                    {/* {itemFull.filter((val) => {
+                    {itemFull.filter((val) => {
                         if (val.name.toLowerCase().includes(search.toLowerCase())) {
                             return val
                         }
                     }).map((item, id) => (
                         <AddonsCard item={item} key={id} />
-                    ))} */}
+                    ))}
                 </ScrollView>
                 <View style={{ position: "absolute", bottom: 40, right: 20, }}>
 

@@ -9,17 +9,27 @@ import SecondaryButton from '../../components/util/Buttons/SecondaryButton'
 import OTP from '../../components/util/OTP.js'
 import { SvgXml } from 'react-native-svg'
 import { OTPExclamation } from '../../Constants/SVG'
+import { useDispatch, useSelector } from 'react-redux'
+import { userActions } from '../../store/User'
+import Amplify from '@aws-amplify/core';
+import Auth from '@aws-amplify/auth';
+import awsconfig from '../../src/aws-exports';
+Amplify.configure(awsconfig);
 const OTPScreen = ({ navigation, route }) => {
-
+  const dispatch = useDispatch()
+  const session = useSelector(state => state.user.otpSession)
+  // console.log("session  in OTP screen: " + JSON.stringify(session));
+  const [message, setMessage] = useState("")
   const [error, setError] = useState(false)
   const [code, setCode] = useState("")
   const [color, setColor] = useState("");
-
+  const [status, setStatus] = useState(" ")
   const [Loading, setLoading] = useState(false)
   const [modalVisible, setModalVisible] = useState(false);
 
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(5);
+
   useEffect(() => {
     let myInterval = setInterval(() => {
       if (seconds > 0) {
@@ -39,19 +49,34 @@ const OTPScreen = ({ navigation, route }) => {
     };
   });
   const buttonOTPhandler = () => {
-    if (code != 1234) {
-      setError(true)
-      // setCode("0000")
-      return;
+    if (session && code) {
+      Auth.sendCustomChallengeAnswer(session, code)
+        .then((user) => {
+          // setLoading(true)
+          console.log("ddddd : "+user);
+          navigation.navigate('permissionScreen')
+          dispatch(userActions.otpVerify({ session: session, user: user }))
+          setError(false)
+        })
+        .catch((err) => {
+          setError(true);
+          // setStatus(err)
+          setMessage(err.message)
+        });
     }
-    navigation.navigate('permissionScreen')
+    if (code === "") {
+      setMessage("Please Enter OTP")
+      setCode("000000")
+      setError(true)
+      return
+    }
   }
-
   useEffect(() => {
+    setError(false)
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, 1000)
+    }, 3000)
     setTimeout(() => { setColor(Colors.yellow100) }, 6500)
   }, [])
 
@@ -66,7 +91,6 @@ const OTPScreen = ({ navigation, route }) => {
   const cancelHandler = () => {
     setModalVisible(false)
   }
-  console.log(error);
   return (
     <Pressable style={{ flex: 1 }} onPress={() => Keyboard.dismiss()}
     >
@@ -108,7 +132,6 @@ const OTPScreen = ({ navigation, route }) => {
             <View style={{ justifyContent: "center", alignItems: "center" }}>
               <OTP code={code} setCode={setCode} error={error} setError={setError} />
             </View>
-            <Text style={styles.errorText}>{error}</Text>
             <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
               <TouchableOpacity style={[styles.resendContainer, { backgroundColor: color }]} onPress={() => { setSeconds(5) }}>
                 <Text style={styles.wrongNumber}>Resend OTP</Text>
@@ -121,7 +144,7 @@ const OTPScreen = ({ navigation, route }) => {
         </KeyboardAvoidingView>
         {error && <View style={styles.incorrectOTPContainer}>
           <SvgXml xml={OTPExclamation} />
-          <Text style={styles.incorrectOTPText}>Incorrect OTP</Text>
+          <Text style={styles.incorrectOTPText}>{message}</Text>
         </View>}
         <PrimaryButton onPress={buttonOTPhandler}>Confirm</PrimaryButton>
       </View>

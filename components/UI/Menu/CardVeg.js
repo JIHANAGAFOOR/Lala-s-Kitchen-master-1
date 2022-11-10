@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, Dimensions, Easing, Animated, TouchableO
 import React, { useState } from 'react'
 import { Colors } from '../../../Constants/Color'
 import { useDispatch, useSelector } from 'react-redux'
-import { Meal } from '../../../DUMMY_DATA'
+import { Meal, MealCorrected } from '../../../DUMMY_DATA'
 import { SvgXml } from 'react-native-svg'
 import { useEffect } from 'react'
 import Category from '../../../screens/subscription/Category'
@@ -19,16 +19,14 @@ const CardVeg = ({ mealIcon }) => {
     });
 
     const categorySelected = useSelector(state => state.meal.category)
-    const Breakfast = Meal.breakfast.filter((data) => (
-        (data.category === categorySelected && data.type === "Veg")
+    const Breakfast=MealCorrected.filter((data)=>(
+        (data.category === categorySelected && data.type === "Veg" && data.slot==='breakfast')
     ))
-
-    const Lunch = Meal.Lunch.filter((data) => (
-        (data.category === categorySelected && data.type === "Veg")
+    const Lunch=MealCorrected.filter((data)=>(
+        (data.category === categorySelected && data.type === "Veg" && data.slot==='lunch')
     ))
-
-    const Dinner = Meal.Dinner.filter((data) => (
-        (data.category === categorySelected && data.type === "Veg")
+    const Dinner=MealCorrected.filter((data)=>(
+        (data.category === categorySelected && data.type === "Veg" && data.slot==='dinner')
     ))
     const flipAnimation = () => {
         if (currentValue >= 90) {

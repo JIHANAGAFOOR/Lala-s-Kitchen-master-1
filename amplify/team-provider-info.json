@@ -19,7 +19,7 @@
       "function": {
         "lalasCreateAuthChallenge": {
           "deploymentBucketName": "amplify-lalaskitchenmaster-dev-161202-deployment",
-          "s3Key": "amplify-builds/lalasCreateAuthChallenge-4d69533146444e787963-build.zip"
+          "s3Key": "amplify-builds/lalasCreateAuthChallenge-2f4b3134687669495358-build.zip"
         },
         "lalasDefineAuthChallenge": {
           "deploymentBucketName": "amplify-lalaskitchenmaster-dev-161202-deployment",

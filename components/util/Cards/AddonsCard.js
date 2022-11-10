@@ -1,8 +1,8 @@
-import { Dimensions, Pressable, StyleSheet, Text, TouchableOpacity, View, Image,Animated } from 'react-native'
+import { Dimensions, Pressable, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import LottieView from 'lottie-react-native'
-// import Animated, { FadeIn, FadeOut, interpolateNode } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeOut, interpolateNode } from 'react-native-reanimated';
 import { Colors } from '../../../Constants/Color'
 import { SvgXml } from 'react-native-svg'
 import { Minus, MinusGray, NonVegMeal, Plus, VegMeal } from '../../../Constants/SVG'

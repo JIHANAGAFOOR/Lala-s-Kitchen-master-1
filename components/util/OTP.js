@@ -1,12 +1,13 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Dimensions, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import React, { useState, useRef, useEffect } from 'react'
 import { Colors } from '../../Constants/Color'
 
+const screenWidth = Dimensions.get('window').width
 const OTP = ({ code, setCode, error, setError }) => {
 
 
-    const codeDigitsArray = [1, 2, 3, 4];
-    const maxLength = 4
+    const codeDigitsArray = [1, 2, 3, 4, 5, 6];
+    const maxLength = 6
     const textInputRef = useRef(null)
     let color = ""
     let arr = []
@@ -80,11 +81,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderBottomWidth: 10,
         borderRadius: 10,
-        width: 64,
+        width: screenWidth/7,
         justifyContent: "center",
         alignItems: "center",
         margin: 10,
-        height: 64,
+        height: screenWidth/6,
         backgroundColor: "#FAFAFA"
 
     },

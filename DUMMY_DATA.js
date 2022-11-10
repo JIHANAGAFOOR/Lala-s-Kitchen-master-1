@@ -177,6 +177,229 @@ export const Days = [
 
 ]
 
+export const MealCorrected = [
+    {
+        "id": 1,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "slot": "breakfast",
+        "category": "Regular",
+        "itemName": "Appam -3 Nos",
+        "Curry": "chicken Stew",
+        "image": idiyappam,
+        "cost":50
+
+    },
+    {
+        "id": 2,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "slot": "breakfast",
+        "category": "Healthy",
+        "itemName": "Plain Dosa",
+        "Curry": "Sambar",
+        "image": DosaAndSambar,
+        "cost":50
+
+    },
+    {
+        "id": 3,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "slot": "breakfast",
+        "category": "Diabetic",
+        "itemName": "Idiyappam ",
+        "Curry": "Veg Stew",
+        "image": IdiyappamAndVegStew,
+        "cost":50
+
+    },
+    {
+        "id": 4,
+        "type": "Veg",
+        "day": "Sunday",
+        "slot": "breakfast",
+        "category": "Regular",
+        "itemName": "Idli - 3 Nos ",
+        "Curry": "Sambar",
+        "image": IdliAndSambar,
+        "cost":50
+
+    }, {
+        "id": 5,
+        "type": "Veg",
+        "day": "Sunday",
+        "slot": "breakfast",
+        "category": "Healthy",
+        "itemName": "Plain Dosa ",
+        "Curry": "sambar",
+        "image": DosaAndSambar,
+        "cost":50
+
+    },
+    {
+        "id": 6,
+        "type": "Veg",
+        "day": "Sunday",
+        "slot": "breakfast",
+        "category": "Diabetic",
+        "itemName": "Idiyappam ",
+        "Curry": "Veg Stew",
+        "image": IdiyappamAndVegStew,
+        "cost":50
+
+    },
+
+
+    {
+        "id": 7,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "category": "Regular",
+        "slot": "lunch",
+        "itemName": "Rice - 1 Portion",
+        "Curry": "Fish Fry, Curry and Dishes",
+        "image": RiceAndFish,
+        "cost":50
+
+    },
+    {
+        "id": 8,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "category": "Healthy",
+        "slot": "lunch",
+        "itemName": "Rice - 1 Portion",
+        "Curry": "Veg Curries and salads",
+        "image": RiceAndVegCurry,
+        "cost":50
+
+    },
+    {
+        "id": 9,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "category": "Diabetic",
+        "itemName": "Curried Rice",
+        "slot": "lunch",
+        "Curry": "salads",
+        "image": CurriedRice,
+        "cost":50
+
+    },
+    {
+        "id": 10,
+        "type": "Veg",
+        "day": "Sunday",
+        "category": "Regular",
+        "slot": "lunch",
+        "itemName": "Rice - 1 Portion",
+        "Curry": "Curd,Curry and Salads",
+        "image": RiceAndCurd,
+        "cost":50
+
+    },
+    {
+        "id": 11,
+        "type": "Veg",
+        "day": "Sunday",
+        "category": "Healthy",
+        "slot": "lunch",
+        "itemName": "Rice - 1 Portion",
+        "Curry": "Curd",
+        "image": RiceAndVegCurry,
+        "cost":50
+
+    },
+    {
+        "id": 12,
+        "type": "Veg",
+        "day": "Sunday",
+        "slot": "lunch",
+        "category": "Diabetic",
+        "itemName": "Curried Rice",
+        "Curry": "salads",
+        "image": CurriedRice,
+        "cost":50
+
+    },
+    {
+        "id": 13,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "slot": "dinner",
+        "category": "Regular",
+        "itemName": "Porotta",
+        "Curry": "Beef Fry",
+        "image": PorottaAndBeef,
+        "cost":50
+
+    },
+    {
+        "id": 14,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "category": "Healthy",
+        "slot": "dinner",
+        "itemName": "Chappathi",
+        "Curry": "Green peas Curry",
+        "image": ChapatiAndGreenPeas,
+        "cost":50
+
+    },
+    {
+        "id": 15,
+        "type": "Non-Veg",
+        "day": "Sunday",
+        "slot": "dinner",
+        "category": "Diabetic",
+        "itemName": "Wheat Dosa",
+        "Curry": "Chutneys",
+        "image": WheatDosa,
+        "cost":50
+
+    },
+    {
+        "id": 16,
+        "type": "Veg",
+        "day": "Sunday",
+        "category": "Regular",
+        "slot": "dinner",
+        "itemName": "Chappathi",
+        "Curry": "Mixed Veg Curry",
+        "image": ChappathiAndVegCurry,
+        "cost":50
+
+    },
+    {
+        "id": 17,
+        "type": "Veg",
+        "day": "Sunday",
+        "category": "Healthy",
+        "slot": "dinner",
+        "itemName": "Chappathi",
+        "Curry": "Green peas Curry",
+        "image": ChapatiAndGreenPeas,
+        "cost":50
+
+    },
+    {
+        "id": 18,
+        "type": "Veg",
+        "day": "Sunday",
+        "slot": "dinner",
+        "category": "Diabetic",
+        "itemName": "Wheat Dosa",
+        "Curry": "Chutneys",
+        "image": WheatDosa,
+        "cost":50
+
+    },
+]
+
+
+
+
 export const Meal = {
     "breakfast":
         [{

@@ -3,11 +3,11 @@ import React from 'react'
 import { Colors } from '../../../Constants/Color'
 import { SvgXml } from 'react-native-svg'
 
-const HorizontalContainerWithIcon = ({ icon, text,styless }) => {
+const HorizontalContainerWithIcon = ({ icon, text, styless }) => {
     return (
-        <View style={[styles.container,styless]}>
+        <View style={[styles.container, styless]}>
             <SvgXml xml={icon} />
-            <Text style={[styles.text]}>{text}</Text>
+            <Text style={[styles.text, styless]}>{text}</Text>
         </View>
     )
 }

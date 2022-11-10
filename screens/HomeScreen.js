@@ -19,7 +19,14 @@ import Cart from './Addons/Cart';
 import Menu from './Menu/Menu';
 import AccountCreation from './onBoarding/AccountCreation';
 import SubscriptionSetup from './subscription/SubscriptionSetup';
-// import Profile from './User/Profile/Profile';
+import Profile from './User/Profile/Profile';
+import Settings from './User/Settings';
+import Address from './User/Address';
+import { useSelector } from 'react-redux';
+import Amplify from '@aws-amplify/core';
+import Auth from '@aws-amplify/auth';
+import awsconfig from '../src/aws-exports';
+Amplify.configure(awsconfig);
 LogBox.ignoreLogs([
     "exported from 'deprecated-react-native-prop-types'.",
 ])
@@ -28,8 +35,23 @@ const Stack = createStackNavigator();
 export default function HomeScreen() {
 
     const ref = useRef()
+    const [user, setUser] = useState("")
     const [appIsReady, setAppIsReady] = useState(false);
-
+    useEffect(() => {
+        verifyAuth();
+    }, []);
+    const verifyAuth = () => {
+        Auth.currentAuthenticatedUser()
+            .then((user) => {
+                setUser(user)
+                dispatch(userActions.otpAuth({ user: user, session: null }))
+            })
+            .catch((err) => {
+                // console.error(err);
+                // setMessage(NOTSIGNIN);
+            });
+    };
+    console.log("user Data : " + user)
     useEffect(() => {
         async function prepare() {
             try {
@@ -83,6 +105,21 @@ export default function HomeScreen() {
             }}>
             <Stack.Screen
                 name="welcome"
+                component={user ? Main : WelcomeScreen}
+
+                options={{
+                    headerShown: false,
+                    // title: "Setup Meals",
+                    headerStyle: {
+                        backgroundColor: Colors.yellow100,
+                    },
+                    headerTitleStyle: { fontFamily: "Bold" },
+                    cardStyleInterpolator:
+                        CardStyleInterpolators.forVerticalIOS,
+                }}
+            />
+              <Stack.Screen
+                name="signup"
                 component={WelcomeScreen}
 
                 options={{
@@ -211,14 +248,31 @@ export default function HomeScreen() {
                         CardStyleInterpolators.forVerticalIOS,
                 }}
             />
-            {/* <Stack.Screen
+
+            <Stack.Screen
                 name="profile"
                 component={Profile}
                 options={{
                     headerShown: false,
                     title: ""
                 }}
-            /> */}
+            />
+            <Stack.Screen
+                name="address"
+                component={Address}
+                options={{
+                    headerShown: false,
+                    title: ""
+                }}
+            />
+            <Stack.Screen
+                name="settings"
+                component={Settings}
+                options={{
+                    headerShown: false,
+                    title: ""
+                }}
+            />
         </Stack.Navigator>
 
         //  </ScreenSwitcher>

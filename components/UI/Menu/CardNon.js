@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, Dimensions, Animated, Easing, TouchableO
 import React, { useState } from 'react'
 import { Colors } from '../../../Constants/Color'
 import { useSelector } from 'react-redux'
-import { Meal } from '../../../DUMMY_DATA'
+import { Meal, MealCorrected } from '../../../DUMMY_DATA'
 import { useDispatch } from 'react-redux'
 import { mealsActions } from '../../../store/meals'
 import { useEffect } from 'react'
@@ -12,7 +12,6 @@ import Category from '../../../screens/subscription/Category'
 var screenWidth = Dimensions.get('window').width;
 var screenHeight = Dimensions.get('window').height;
 const Card = ({ mealIcon }) => {
-    const mealType = useSelector(state => state.meal.mealType)
     let animatedValue = new Animated.Value(0);
     let currentValue = 0;
     animatedValue.addListener(({ value }) => {
@@ -20,26 +19,19 @@ const Card = ({ mealIcon }) => {
     });
     const id = useSelector(state => state.meal.typeOfMeal)
     const categorySelected = useSelector(state => state.meal.category)
-    const [Loading, setLoading] = useState(false)
     const dispatch = useDispatch();
     const [modalVisible, setModalVisible] = useState(false);
 
-    function onLoading(value, label) {
-        dispatch(mealsActions.isLoading(value))
-        setLoading(value)
-    }
-    const Breakfast = Meal.breakfast.filter((data) => (
-        (data.category === categorySelected && data.type === "Non-Veg")
+    
+    const Breakfast=MealCorrected.filter((data)=>(
+        (data.category === categorySelected && data.type === "Non-Veg" && data.slot==='breakfast')
     ))
-
-    const Lunch = Meal.Lunch.filter((data) => (
-        (data.category === categorySelected && data.type === "Non-Veg")
+    const Lunch=MealCorrected.filter((data)=>(
+        (data.category === categorySelected && data.type === "Non-Veg" && data.slot==='lunch')
     ))
-
-    const Dinner = Meal.Dinner.filter((data) => (
-        (data.category === categorySelected && data.type === "Non-Veg")
+    const Dinner=MealCorrected.filter((data)=>(
+        (data.category === categorySelected && data.type === "Non-Veg" && data.slot==='dinner')
     ))
-
     const flipAnimation = () => {
         if (currentValue >= 90) {
             Animated.spring(animatedValue, {
@@ -184,10 +176,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     container: {
-        // backgroundColor:"green",
         flex: 1,
         marginBottom: 8,
-        // minHeight: 80,
         flexDirection: "row",
         padding: 16,
         backgroundColor: 'white',
@@ -199,16 +189,11 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         borderRadius: 12,
     },
-    itemContainer: {
-        // flex: 1,
-        // justifyContent: "space-around",
-    },
 
     imageContainer: {
         backgroundColor: Colors.grey1,
         width: screenHeight / 8,
         height: screenHeight / 8,
-        // flex: 1,
         borderRadius: 10,
         overflow: "hidden"
     },
@@ -225,19 +210,10 @@ const styles = StyleSheet.create({
     },
     centeredView: {
         flex: 1,
-        // justifyContent: "center",
-        // alignItems: "center",
-        // margin: 30,
     },
     modalView: {
         flex: 1,
-        // margin: 20,
         backgroundColor: "white",
-        // borderRadius: 10,
-        // padding: 20,
-        // borderWidth: 30,
-        // borderColor: "rgba(127, 126, 126, 0.72)",
-        // alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

@@ -218,7 +218,6 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import ScreenSwitcher from 'react-native-device-screen-switcher';
 import { NavigationContainer } from '@react-navigation/native'
-import WelcomeScreen from './screens/onBoarding/welcomeScreen'
 import store from './store/index'
 import HomeScreen from './screens/HomeScreen'
 import { Colors } from './Constants/Color'
