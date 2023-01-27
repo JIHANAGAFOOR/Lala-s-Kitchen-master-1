@@ -90,7 +90,7 @@ type OrderType{
 {
   MobileNumber: String! 
   Id:ID!
-  MasterSubscriptionKey: String!@primaryKey(sortKeyFields : ["DeliveryDate"])
+  MasterSubscriptionKey: String!
   FirstName:String!
   LastName:String!
   Address: String!
@@ -99,7 +99,7 @@ type OrderType{
   IsAddOnType: Boolean!
   StartDate: String!
   EndDate: String!
-  DeliveryDate: String!
+  DeliveryDate: String!@primaryKey(sortKeyFields : ["MasterSubscriptionKey"])
   TotalPricePerDay: Float
   NumberOfDays: Int!
   TotalPrice: Float!

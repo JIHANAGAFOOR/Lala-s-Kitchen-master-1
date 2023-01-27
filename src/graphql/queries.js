@@ -141,12 +141,12 @@ export const listMasterSubscriptions = /* GraphQL */ `
 `;
 export const getDeliverySubscription = /* GraphQL */ `
   query GetDeliverySubscription(
-    $MasterSubscriptionKey: String!
     $DeliveryDate: String!
+    $MasterSubscriptionKey: String!
   ) {
     getDeliverySubscription(
-      MasterSubscriptionKey: $MasterSubscriptionKey
       DeliveryDate: $DeliveryDate
+      MasterSubscriptionKey: $MasterSubscriptionKey
     ) {
       MobileNumber
       Id
@@ -180,16 +180,16 @@ export const getDeliverySubscription = /* GraphQL */ `
 `;
 export const listDeliverySubscriptions = /* GraphQL */ `
   query ListDeliverySubscriptions(
-    $MasterSubscriptionKey: String
-    $DeliveryDate: ModelStringKeyConditionInput
+    $DeliveryDate: String
+    $MasterSubscriptionKey: ModelStringKeyConditionInput
     $filter: ModelDeliverySubscriptionFilterInput
     $limit: Int
     $nextToken: String
     $sortDirection: ModelSortDirection
   ) {
     listDeliverySubscriptions(
-      MasterSubscriptionKey: $MasterSubscriptionKey
       DeliveryDate: $DeliveryDate
+      MasterSubscriptionKey: $MasterSubscriptionKey
       filter: $filter
       limit: $limit
       nextToken: $nextToken
