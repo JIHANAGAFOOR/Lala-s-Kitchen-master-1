@@ -36,5 +36,18 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientID": "string",
             "CreatedSNSRole": "string"
         }
+    },
+    "api": {
+        "lalaskitchenmaster": {
+            "GraphQLAPIKeyOutput": "string",
+            "GraphQLAPIIdOutput": "string",
+            "GraphQLAPIEndpointOutput": "string"
+        }
+    },
+    "storage": {
+        "lalaskitchen": {
+            "BucketName": "string",
+            "Region": "string"
+        }
     }
 }

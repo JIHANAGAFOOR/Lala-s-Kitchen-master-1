@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "lalaskitchenmaster",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\study\\jihana\\awsCURD\\amplify\\backend\\api\\lalaskitchenmaster\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authlalas"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2024-01-24T07:20:46.109Z",
+        "keyDescription": "lalasapikey"
+      }
+    ],
+    "conflictResolution": {}
+  }
+}

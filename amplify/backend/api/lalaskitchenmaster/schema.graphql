@@ -1,0 +1,130 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+#input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Menu @model @auth(rules: [{ allow: private }])
+{
+  #IsVegMealCategoryMealSlotAvailableDayIsAddOnType 
+  MenuKey: String! @primaryKey(sortKeyFields : ["Name"])
+  Name: String!
+  FirstItemName:String
+  SecondItemName:String
+  Description: String
+  IsVeg: Boolean! #veg/nonveg
+  Ingredient:String 
+  DishType:String 
+  MealCategory: [MealCategoryEnum] 
+  MealSlot:[MealSlotEnum]
+  AvailableDay:[Day] 
+  Price:Float
+  Image:String
+  IsAddOnType: Boolean!
+  AddOnDate:String
+  TotalAvailableCount: Int
+  Status:StatusEnum! 
+}
+
+enum Day{
+  Sunday,
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday
+}
+enum MealCategoryEnum{
+  Regular,
+  Healthy,
+  Diabetic
+}
+enum MealSlotEnum{
+  Breakfast,
+  Lunch,
+  Dinner
+}
+enum StatusEnum
+{
+  Active,
+  Inactive,
+  Deleted,
+  Archived,
+  Paused,
+  Cancelled,
+  Packed,
+  Dispatched,
+  Delivered
+  
+}
+ 
+ type MasterSubscription @model @auth(rules: [{ allow: private }])
+{
+  MobileNumber: String! @primaryKey(sortKeyFields : ["Id"])
+  Id:ID!
+  FirstName:String!
+  LastName:String!
+  Address: String!
+  Orders:[OrderType]
+  AddOnMealName: String!
+  IsAddOnType: Boolean!
+  StartDate: String!
+  EndDate: String!
+  TotalPricePerDay: Float
+  NumberOfDays: Int!
+  TotalPrice: Float!
+  PaymentDetails: String
+  Status:StatusEnum! @index(name:"byStatus",queryField:"SubscriptionByStatus")
+  Route: String!
+}
+
+type OrderType{
+  Token: Int!
+  IsVeg: Boolean! #veg/nonveg
+  MealCategory: MealCategoryEnum! 
+  MealSlot: String!
+  NumberOfMealsPerToken: Int
+  Price: Float
+}
+
+ type DeliverySubscription @model @auth(rules: [{ allow: private }])
+{
+  MobileNumber: String! 
+  Id:ID!
+  MasterSubscriptionKey: String!@primaryKey(sortKeyFields : ["DeliveryDate"])
+  FirstName:String!
+  LastName:String!
+  Address: String!
+  Orders:[OrderType]
+  AddOnMealName: String!
+  IsAddOnType: Boolean!
+  StartDate: String!
+  EndDate: String!
+  DeliveryDate: String!
+  TotalPricePerDay: Float
+  NumberOfDays: Int!
+  TotalPrice: Float!
+  PaymentDetails: String
+  Status:StatusEnum! @index(name:"byStatus",queryField:"DeliveryByStatus")
+  Route: String!
+}
+
+type Plan @model @auth(rules: [{ allow: private }])
+{
+  NameKey: String! @primaryKey #Veg_Regular/Veg_Diet/NonVeg_Regular
+  Description: String!
+  VegNonVegStyle: VegNonVegEnum!
+  MealCategory: MealCategoryEnum!
+  Image: String!
+  BreakfastPrice: Float!
+  LunchPrice: Float!
+  DinnerPrice: Float!
+  TotalPricePerDay: Float!
+  TotalPricePerWeek: Float!
+  TotalPricePerMonth: Float!
+}
+
+enum VegNonVegEnum
+{
+  Vegeterian,
+  Nonvegeterian
+}

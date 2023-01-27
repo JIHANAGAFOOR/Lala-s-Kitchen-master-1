@@ -1,0 +1,13 @@
+{
+  "resourceName": "lalaskitchen",
+  "policyUUID": "5fd717cf",
+  "bucketName": "lalaskitchenimages",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "groupAccess": {}
+}
